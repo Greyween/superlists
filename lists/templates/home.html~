@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+  To-Do List
+{% endblock %}
+
+{% block content %}
+  <h1>To-Do</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="item_text" id="new_item" 
+           placeholder="To-do item">
+  </form>
+
+  <table id="list_table">
+    <tr>
+      <td>{{ new_item }}</td>
+    </tr>
+  </table>
+{% endblock %}
