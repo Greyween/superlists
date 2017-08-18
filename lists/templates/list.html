@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Only List
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Your To-Do List
+
+      <form action="/lists/{{ list.id }}/add_item" method="POST">
+        {% csrf_token %}
+        <input type="text" name="item_text" id="new_item" 
+               placeholder="To-do item">
+      </form>
+
+      <table id="list_table" class="table">
+        {% for item in list.item_set.all %}
+          <tr>
+            <td>{{ forloop.counter }}: {{ item.text }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+{% endblock %}
