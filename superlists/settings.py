@@ -25,7 +25,7 @@ SECRET_KEY = '@360h@_q(f!ekgylz$tx8bwbarsusx!@-@h(b9_-64=p9-^lhp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['draiden.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', 'draiden.pythonanywhere.com']
 
 
 # Application definition
