@@ -12,6 +12,14 @@
 
         <form action="/lists/new" method="POST">
           {% csrf_token %}
+
+          {% if error %}
+            <div class="form-group has-error">
+              <span class="help-block">
+                {{ error }}      
+              </span>
+            </div>
+          {% endif %}
           <input type="text" name="item_text" id="new_item" 
                  placeholder="To-do item" class="form-control input-lg">
         </form>

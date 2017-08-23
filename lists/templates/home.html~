@@ -13,7 +13,7 @@
         <form action="/lists/new" method="POST">
           {% csrf_token %}
           <input type="text" name="item_text" id="new_item" 
-                 placeholder="To-do item">
+                 placeholder="To-do item" class="form-control input-lg">
         </form>
       </div>
     </div>
