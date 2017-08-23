@@ -16,7 +16,7 @@ def show_list(request, list_id):
       item = Item(text=new_item_text, list=list_)
       item.full_clean()
       item.save()
-      return redirect('/lists/%s/' % list_.id)
+      return redirect(list_)
     except ValidationError:
       error = "You can't have empty list item"
   return render(request, 'list.html', {
@@ -35,4 +35,4 @@ def new_list(request):
     list_.delete()
     error = "You can't have empty list item"
     return render(request, 'home.html', {'error': error})
-  return redirect('/lists/%s/' % list_.id)
+  return redirect(list_)
