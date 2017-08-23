@@ -10,8 +10,10 @@
       <div class="text-center">
         <h1>Add New To-Do List</h1>
 
-        <form action="/lists/new" method="POST">
+        <form action="{% url 'new_list' %}" method="POST">
           {% csrf_token %}
+          <input type="text" name="item_text" id="new_item" 
+                 placeholder="To-do item" class="form-control input-lg">
 
           {% if error %}
             <div class="form-group has-error">
@@ -20,8 +22,6 @@
               </span>
             </div>
           {% endif %}
-          <input type="text" name="item_text" id="new_item" 
-                 placeholder="To-do item" class="form-control input-lg">
         </form>
       </div>
     </div>
