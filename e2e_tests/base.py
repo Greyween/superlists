@@ -19,8 +19,8 @@ class FunctionalTest(StaticLiveServerTestCase):
     self.browser.close()
 
   def create_item(self, item):
-    input_box = self.browser.find_element_by_id('new_item')
-    self.assertEqual(input_box.get_attribute('placeholder'), 'To-do item')
+    input_box = self.browser.find_element_by_id('id_text')
+    self.assertEqual(input_box.get_attribute('placeholder'), 'To-Do Item')
     input_box.send_keys(item)
     input_box.send_keys(Keys.ENTER)
 

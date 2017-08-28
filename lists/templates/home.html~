@@ -10,15 +10,14 @@
       <div class="text-center">
         <h1>Add New To-Do List</h1>
 
-        <form action="/lists/new" method="POST">
+        <form action="{% url 'new_list' %}" method="POST">
           {% csrf_token %}
-          <input type="text" name="item_text" id="new_item" 
-                 placeholder="To-do item" class="form-control input-lg">
+          {{ form.text.errors }}
 
-          {% if error %}
+          {% if form.errors %}
             <div class="form-group has-error">
               <span class="help-block">
-                {{ error }}      
+                {{ form.text.errors }}      
               </span>
             </div>
           {% endif %}

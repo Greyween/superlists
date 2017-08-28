@@ -12,13 +12,12 @@
       <form action="{% url 'show_list' list.id %}" method="POST">
         {% csrf_token %}
 
-        <input type="text" name="item_text" id="new_item" 
-               placeholder="To-do item">
+        {{ form.text }}
 
-        {% if error %}
+        {% if form.errors %}
           <div class="form-group has-error">
             <span class="help-block">
-              {{ error }}      
+              {{ form.text.errors }}      
             </span>
           </div>
         {% endif %}

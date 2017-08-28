@@ -3,36 +3,32 @@ from django.http import HttpResponse
 from django.core.exceptions import ValidationError
 
 from lists.models import Item, List
+from lists.forms import ItemForm
 
 def home(request):
-  return render(request, 'home.html')
+  form = ItemForm()
+  return render(request, 'home.html', {'form': form})
 
 def show_list(request, list_id):
   list_ = List.objects.get(id=list_id)
-  error = None
+  form = ItemForm()
   if request.method == 'POST':
-    try:
-      new_item_text = request.POST['item_text']
-      item = Item(text=new_item_text, list=list_)
-      item.full_clean()
-      item.save()
+    form = ItemForm(data=request.POST)
+    if form.is_valid():
+      item_text = request.POST['text']
+      Item.objects.create(text=item_text, list=list_)
       return redirect(list_)
-    except ValidationError:
-      error = "You can't have empty list item"
   return render(request, 'list.html', {
     'list': list_,
-    'error': error
+    'form': form
   })
 
 def new_list(request):
-  list_ = List.objects.create()
-  new_item_text = request.POST['item_text']
-  item = Item(text=new_item_text, list=list_)
-  try:
-    item.full_clean()
-    item.save()
-  except ValidationError:
-    list_.delete()
-    error = "You can't have empty list item"
-    return render(request, 'home.html', {'error': error})
-  return redirect(list_)
+  form = ItemForm(data=request.POST)
+  if form.is_valid():
+    list_ = List.objects.create()
+    new_item_text = request.POST['text']
+    item = Item.objects.create(text=new_item_text, list=list_)
+    return redirect(list_)
+  return render(request, 'home.html', {'form': form})
+  
