@@ -6,6 +6,19 @@
 {% endblock %}
 
 {% block content %}
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <a href="/" class="navbar-brand">
+        Superlists
+      </a>
+      <form method="POST" action="#" class="navbar-form navbar-right">
+        {% csrf_token %}
+        <label for="email">Enter email:</label>
+        <input type="text" name="email" id="email" class="form-control">
+      </form>
+    </div>
+  </nav>
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3 jumbotron">
       <div class="text-center">
